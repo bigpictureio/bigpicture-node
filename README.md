@@ -13,19 +13,7 @@ $ npm install bigpicture-node
 
 ## Usage
 
-```js
-const bigpicture = require('bigpicture-node')('api_key');
-// or
-const { Client } = require('bigpicture-node');
-const bigPicture = new Client('api_key');
-
-let Company = bigPicture.Company;
-Company.find({domain: 'stripe.com'})
-  .then(company => console.log(company.id))
-  .catch(error => console.error(error));
-```
-
-Or using ES6 modules and async/await:
+Using ES6 modules and async/await:
 ```js
 import BigPicture from 'bigpicture-node';
 const bigPicture = BigPicture('api_key');
@@ -37,6 +25,19 @@ let Company = bigPicture.Company;
 let company = await Company.find({domain: 'stripe.com'});
 
 console.log(company);
+```
+
+Or using commonjs modules:
+```js
+const bigpicture = require('bigpicture-node').default('api_key');
+// or
+const { Client } = require('bigpicture-node');
+const bigPicture = new Client('api_key');
+
+let Company = bigPicture.Company;
+Company.find({domain: 'stripe.com'})
+  .then(company => console.log(company.id))
+  .catch(error => console.error(error));
 ```
 
 ## Quering the API

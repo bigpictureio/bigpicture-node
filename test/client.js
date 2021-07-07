@@ -3,6 +3,7 @@ const needle = require("needle");
 const sinon = require("sinon");
 const bigPicture = require("../dist").default;
 const { Client } = require("../dist/client");
+const pkg = require('../package.json');
 const {
   QueuedError,
   NotFoundError,
@@ -74,7 +75,7 @@ describe("BigPicture Client", function () {
       assert.equal(query, opts.query);
       assert.equal(options.timeout, 10000);
       assert.equal(options.headers.Authorization, API_KEY);
-      assert.equal(options.user_agent, "BigPictureNode/v1.0.0");
+      assert.equal(options.user_agent, `BigPictureNode/v${pkg.version}`);
     });
   });
 
