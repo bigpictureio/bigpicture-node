@@ -10,7 +10,7 @@ interface IpFindParams {
 export default class Ip extends Base {
   constructor(client: Client) {
     super(client);
-    this.version = 1;
+    this.version = 2;
     this.api = "ip";
   }
 
