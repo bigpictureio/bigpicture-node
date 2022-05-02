@@ -3,7 +3,7 @@ const needle = require("needle");
 const sinon = require("sinon");
 const bigPicture = require("../dist").default;
 const { Client } = require("../dist/client");
-const pkg = require('../package.json');
+const pkg = require("../package.json");
 const {
   QueuedError,
   NotFoundError,

@@ -1,6 +1,6 @@
 var assert = require("chai").assert;
 const nock = require("nock");
-const { QueuedError, NotFoundError } = require("../dist/errors");
+const { QueuedError, BadRequestError } = require("../dist/errors");
 var Ip = require("../dist").default("key").Ip;
 var ip = require("./fixtures/ip.json");
 
@@ -19,20 +19,22 @@ describe("Calling Ip API", function () {
   });
 
   it("is able to find a company by ip", function () {
-    mock.get("/v1/companies/ip?ip=204.4.143.118").reply(200, ip);
+    mock.get("/v2/companies/ip?ip=204.4.143.118").reply(200, ip);
     return Ip.find({ ip: "204.4.143.118" }).then(function (ip) {
       return assert.isNotNull(ip.company.id);
     });
   });
 
-  it("should throw queue error on 404", function () {
-    mock.get("/v1/companies/ip?ip=204.4.143.118").reply(404, {
-      type: "async_created",
-      message: "Your request has been received and is being processed.",
+  it("should throw queue error on 400", function () {
+    mock.get("/v2/companies/ip?ip=127.0.0.1").reply(400, {
+      error: {
+        type: "bad_request",
+        message: "Private address 127.0.0.1",
+      },
     });
 
-    return Ip.find({ ip: "204.4.143.118" }).catch((err) => {
-      return assert.instanceOf(err, NotFoundError);
+    return Ip.find({ ip: "127.0.0.1" }).catch((err) => {
+      return assert.instanceOf(err, BadRequestError);
     });
   });
 });

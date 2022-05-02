@@ -1,6 +1,8 @@
 {
   "ip": "204.4.143.118",
   "type": "business",
+  "confidence": 0.95,
+  "fuzzy": false,
   "countryCode": "GB",
   "company": {
     "geo": {
@@ -87,5 +89,14 @@
     "lat": 51.5074,
     "lng": -0.12,
     "timeZone": "Europe/London"
+  },
+  "whois": {
+    "domain": "ny.email.gs.com",
+    "name": "The Goldman Sachs Group, Inc."
+  },
+  "asn": {
+    "asn": "AS9084",
+    "name": "European AS",
+    "route": "204.4.143.0/24"
   }
 }
